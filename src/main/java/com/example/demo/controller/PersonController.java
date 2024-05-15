@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
-import com.example.demo.data.model.Person;
+
+import com.example.demo.data.model.Vo.PersonVo;
+import com.example.demo.data.model.Vo.V2.PersonVOV2;
 import com.example.demo.services.PersonServices;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping ("/api/person/v1")
 public class PersonController {
     
     @Autowired
@@ -19,27 +21,35 @@ public class PersonController {
     
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Person> findAll() {
+    public List<PersonVo> findAll() {
         return service.findAll();
     }    
     
     @GetMapping(value="/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person findById(@PathVariable("id") Long id) {
+    public PersonVo findById(@PathVariable("id") Long id) {
         return service.findById(id);
     }    
     
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person create(@RequestBody Person person) {
+    public PersonVo create(@RequestBody PersonVo person) {
         return service.create(person);
     }
+    
+    
+    
+	@PostMapping("/v2")
+	public PersonVOV2 createV2(@RequestBody PersonVOV2 person) {
+		return service.createV2(person);
+	}
+    
     
     @PutMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person update(@RequestBody Person person) {
+    public PersonVo update(@RequestBody PersonVo person) {
         return service.update(person);
     }    
     
