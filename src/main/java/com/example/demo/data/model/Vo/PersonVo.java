@@ -2,14 +2,32 @@ package com.example.demo.data.model.Vo;
 
 import java.io.Serializable;
 
-public class PersonVo  implements Serializable{
+import org.springframework.hateoas.RepresentationModel;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.github.dozermapper.core.Mapping;
+
+
+
+@JsonPropertyOrder({ "id", "firstName", "lastName", "address", "gender" })
+public class PersonVo  extends RepresentationModel<PersonVo> implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
+	@Mapping("id")	
+	@JsonProperty("id")
+	private Long Key;
+	
+
 	private String firstName;
+	
+
 	private String lastName;
+	
 	private String address;
+	
+
 	private String gender;
 	
 	public  PersonVo() {
@@ -17,13 +35,21 @@ public class PersonVo  implements Serializable{
 	}
 	
 
-	public Long getId() {
-		return id;
+
+
+	public Long getKey() {
+		return Key;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+
+
+
+	public void setKey(Long key) {
+		Key = key;
 	}
+
+
+
 
 	public String getFirstName() {
 		return firstName;
@@ -64,7 +90,7 @@ public class PersonVo  implements Serializable{
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((Key == null) ? 0 : Key.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		return result;
 	}
@@ -93,10 +119,10 @@ public class PersonVo  implements Serializable{
 				return false;
 		} else if (!gender.equals(other.gender))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+		if (Key == null) {
+			if (other.Key != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!Key.equals(other.Key))
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
