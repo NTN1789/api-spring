@@ -1,4 +1,4 @@
-package com.example.demo.unitests.mapper.mocks;
+package com.example.demo.mocks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,14 +6,17 @@ import java.util.List;
 import com.example.demo.data.model.Person;
 import com.example.demo.data.model.Vo.PersonVo;
 
+
+
 public class MockPerson {
+
 
     public Person mockEntity() {
     	return mockEntity(0);
     }
     
     public PersonVo mockVO() {
-    	return mockVO(0);
+    	return  mockVO(0);
     }
     
     public List<Person> mockEntityList() {
@@ -51,6 +54,5 @@ public class MockPerson {
         person.setLastName("Last Name Test" + number);
         return person;
     }
-
 
 }
